@@ -1,0 +1,582 @@
+@charset "utf-8";
+html,
+body {
+    /*display:block;
+    overflow:auto;*/
+    font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+    /*background-color: #42413C;*/
+    background-image: url("../media/images/main-background.png");
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    position: relative;
+}
+
+/* ~~ Селекторы элементов/тегов ~~ */
+ul, ol, dl {
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin-top: 0; /* удаление верхнего поля позволяет обойти проблему выхода полей за границы содержащего их контейнера DIV. Оставшееся нижнее поле отделит его от любых последующих элементов. */
+    padding-right: 15px;
+    padding-left: 15px; /* добавление боковых полей к элементам внутри контейнеров DIV, а не к самим контейнерам избавляет от необходимости расчетов рамочной модели. В качестве альтернативы можно использовать вложенный контейнер DIV с боковыми полями. */
+}
+
+a img { /* этот селектор убирает стандартную синюю рамку, которая появляется у изображений в некоторых браузерах, если вокруг изображения есть ссылка */
+    border: none;
+}
+
+/* ~~ Оформление ссылок на вашем сайте должно оставаться в этом порядке, включая группу селекторов, создающих эффект наведения. ~~ */
+a:link {
+    color: #42413C;
+    text-decoration: underline; /* если только ссылки не должны выглядеть исключительно своеобразно, то для быстрого зрительного распознавания рекомендуется использовать подчеркивание */
+}
+
+a:visited {
+    color: #6E6C64;
+    text-decoration: underline;
+}
+
+a:hover, a:active, a:focus { /* эта группа селекторов обеспечивает пользователю, работающему с клавиатурой, такие же возможности наведения, как и при использовании мыши. */
+    text-decoration: none;
+}
+
+/* ~~ этот контейнер фиксированной ширины окружает все остальные DIV ~~ */
+.container {
+    width: 80%;
+    min-width: 1200px;
+    display: block;
+    overflow: auto;
+    background-color: #FFF;
+    margin: 0 auto; /* автоматическое задание величин по бокам в совокупности с шириной центрирует макет */
+}
+
+/* ~~ верхнему колонтитулу не задана ширина. Он растянется на всю ширину макета. Он содержит заполнитель для изображения, который должен быть заменен логотипом по ссылке ~~ */
+.header {
+    background-color: #65BDF8;
+    width: 100%;
+    height: 90px;
+}
+
+/* ~~ Информация по макету. ~~
+
+1) Поля размещены только вверху и/или внизу DIV. Элементы в этом DIV имеют боковые поля. Это избавляет пользователя от необходимости расчетов рамочной модели. Помните, что при добавлении боковых полей или границы к самому DIV их ширина будет добавлена к задаваемой ширине, что образует "полную" ширину. Кроме того, можно удалить поля элемента в DIV и поместить внутри него второй DIV без ширины и с необходимыми по проекту полями.
+
+*/
+
+.content {
+
+    padding: 0 0;
+    background-color: white;
+    height: 100%;
+    padding-bottom: 0;
+
+}
+
+/* ~~ Нижний колонтитул ~~ */
+.footer {
+    bottom:0;
+    left:0;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #CCC49F;
+}
+
+/* ~~ прочие классы float/clear ~~ */
+.fltrt { /* этот класс можно использовать для обтекания элемента справа на странице. Обтекаемый элемент должен предшествовать элементу, с которым он должен находиться рядом на странице. */
+    float: right;
+    margin-left: 8px;
+}
+
+.fltlft { /* этот класс можно использовать для обтекания элемента слева на странице. Обтекаемый элемент должен предшествовать элементу, с которым он должен находиться рядом на странице. */
+    float: left;
+    margin-right: 8px;
+}
+
+.clearfloat { /* этот класс можно поместить в теге <br /> или в пустом блоке DIV в качестве конечного элемента, следующего за последним обтекаемым DIV (внутри #container), если .#footer удален или извлечен из #container */
+    clear: both;
+    height: 0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+.login-form {
+
+    position: relative;
+    right: 0;
+    left: 0;
+    top: 15%;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 320px;
+    width: 320px;
+    background-color: #65BDF8;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #111997;
+    -moz-box-shadow: #4E6CA3;
+}
+
+.label {
+    margin-left: 10px;
+}
+
+.input-field {
+    float: right;
+    margin-right: 5px;
+    border-radius: 7px;
+    box-shadow: #111997;
+    font-size: 16px;
+
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.input-zone {
+    padding-top: 15%;
+}
+
+.button {
+    -moz-box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0));
+    background: -moz-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+    background: -webkit-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+    background: -o-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+    background: -ms-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+    background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0', GradientType=0);
+    background-color: #3d94f6;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #337fed;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 50px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #1570cd;
+}
+
+.button:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
+    background: -moz-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+    background: -webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+    background: -o-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+    background: -ms-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+    background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6', GradientType=0);
+    background-color: #1e62d0;
+}
+
+.button:active {
+    position: relative;
+}
+
+#login-button {
+    float: left;
+    margin-left: 27%;
+    margin-bottom: 60px;
+    position: absolute;
+}
+
+.logout {
+    position: relative;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.popup-form-container {
+    position: fixed;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-content {
+    margin: 40px auto 0px auto;
+    width: 800px;
+
+    min-height: 50%;
+    padding: 10px;
+    background-color: #c5c5c5;
+    position: relative;
+    font-family: Arial;
+}
+
+.navi-bar {
+    margin: 40px auto 0px auto;
+    min-width: 70%;
+    min-height: 10%;
+    background-color: #c5c5c5;
+    bottom: 0;
+    position: relative;
+}
+
+.hoverRow {
+    background-color: aquamarine;
+}
+
+#tableflightsForm {
+    margin-bottom: 20px;
+}
+
+#add-flight-button {
+    float: left;
+    margin-left: 2%;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#refresh-button {
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#flightcreatingform {
+    margin: 0;
+    width: 100%;
+    min-height: 320px;
+}
+
+.inline {
+    float: left;
+    margin-top: 10px;
+    margin-left: 60px;
+    position: relative;
+    height: 60%;
+    width: 40%;
+    min-height: 400px;
+    background-color: #fffcf6;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+.no-hover:hover {
+    background: red
+}
+
+.input-holder {
+    margin-top: 10px;
+}
+
+.buttons-field {
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    margin-left: 60px;
+}
+
+.info-zone {
+    margin: 5px auto 0px auto;
+    position: relative;
+    width: 100%;
+    height: 250px;
+    float: left;
+}
+
+.info-flight {
+    margin-left: 5%;
+    margin-top: 10px;
+    position: relative;
+    min-width: 45%;
+    min-height: 100%;
+    float: left;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+
+}
+
+.info-staff {
+    margin-right: 5%;
+    margin-top: 10px;
+    float: right;
+    position: relative;
+    min-width: 45%;
+    min-height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+.selects {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 5%;
+    width: 60%;
+    height: 10%;
+    min-width: 320px;
+    min-height: 110px;
+    border-radius: 15px;
+    float: left;
+    box-shadow: 0 0 10px #bababa;
+}
+
+.table-zone {
+    float: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+#persons {
+    position: relative;
+    width: 80% !important;
+}
+
+#team-member-editing-form {
+    width: 90%;
+    height: 450px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+    margin-left: 5%;
+    position: relative;
+}
+
+.popup-edit-content {
+
+    margin-left: 35%;
+    margin-top: 10%;
+    width: 30%;
+    min-width: 30%;
+    min-height: 40%;
+    padding: 10px;
+    background-color: #c5c5c5;
+    position: relative;
+    font-family: Arial;
+}
+
+.info {
+    position: relative;
+    height: 30%;
+    margin-top: 5%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+#direct-flight {
+    background-color: #F2F3FF;
+    vertical-align: middle;
+    display: inline-block;
+    min-width: 320px;
+    width: 49.5%;
+    height: 400px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+#back-flight {
+    background-color: #F2F3FF;
+    vertical-align: middle;
+    display: inline-block;
+    min-width: 320px;
+    width: 49.5%;
+    height: 400px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+#flights-content {
+    margin-left: 5%;
+    padding: 5px;
+    position: relative;
+    background-color: #ddffdd;
+    float: left;
+    width: 90%;
+}
+
+#tableUsersForm {
+
+    position: relative;
+    width: 90%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+    margin-left: 5%;
+}
+
+#users {
+    width: 600px !important;
+}
+
+.user-popup-content {
+    margin-left: 35%;
+    margin-top: 10%;
+    width: 500px;
+    min-height: 30%;
+    padding: 10px;
+    background-color: #c5c5c5;
+    position: relative;
+    font-family: Arial;
+}
+
+#person-creating-form {
+    margin-left: 25%;
+    margin-top: 5%;
+    width: 600px;
+    height: 350px;
+    padding: 10px;
+    background-color: #e8ecf9;
+    position: relative;
+    font-family: Arial;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+#user-editing-form {
+    margin-left: 25%;
+    margin-top: 10%;
+    width: 600px;
+    min-height: 30%;
+    padding: 10px;
+    background-color: #e8ecf9;
+    position: relative;
+    font-family: Arial;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+#delete-form {
+    margin-left: 35%;
+    margin-top: 10%;
+    width: 400px;
+    min-height: 30%;
+    padding: 10px;
+    background-color: #e8ecf9;
+    position: relative;
+    font-family: Arial;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+.person-content {
+    margin-left: 35%;
+    margin-top: 10%;
+    width: 600px;
+    min-height: 30%;
+    padding: 10px;
+    background-color: #c5c5c5;
+    position: relative;
+    font-family: Arial;
+}
+
+#input-zone {
+    margin-left: 5px;
+    width: 550px;
+}
+
+.editButton {
+    -moz-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+    box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5));
+    background: -moz-linear-gradient(top, #79bbff 5%, #378de5 100%);
+    background: -webkit-linear-gradient(top, #79bbff 5%, #378de5 100%);
+    background: -o-linear-gradient(top, #79bbff 5%, #378de5 100%);
+    background: -ms-linear-gradient(top, #79bbff 5%, #378de5 100%);
+    background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5', GradientType=0);
+    background-color: #79bbff;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #84bbf3;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #528ecc;
+}
+
+.editButton:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));
+    background: -moz-linear-gradient(top, #378de5 5%, #79bbff 100%);
+    background: -webkit-linear-gradient(top, #378de5 5%, #79bbff 100%);
+    background: -o-linear-gradient(top, #378de5 5%, #79bbff 100%);
+    background: -ms-linear-gradient(top, #378de5 5%, #79bbff 100%);
+    background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff', GradientType=0);
+    background-color: #378de5;
+}
+
+.editButton:active {
+    position: relative;
+    top: 1px;
+}
+
+.no-edit-hover:hover {
+    background: red
+}
+
+.editButton {
+    position: relative;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.info-person {
+    margin-right: 5%;
+    margin-top: 10px;
+    float: right;
+    position: relative;
+    min-width: 45%;
+    min-height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #bababa;
+}
+
+#password-area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.button-holder {
+    position: absolute;
+    top: 15%;
+    text-align: center;
+}
+
+#error-panel {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+.login-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../media/images/drawing.jpg");
+}
+
+.company-info {
+    position: relative;
+    float: left;
+    margin-left: 0;
+    margin-bottom: 0;
+}
